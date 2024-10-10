@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #74ebd5, #acb6e5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+main {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    width: 350px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#calculadora {
+    display: flex;
+    flex-direction: column;
+}
+
+#pantalla {
+    background: #222;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 36px;
+    text-align: right;
+    margin-bottom: 20px;
+    min-height: 60px;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.contenedor-botones {
+    display: flex;
+    justify-content: space-between;
+}
+
+.numeros {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 65%; /* Ajustar el ancho de los números */
+}
+
+.operadores {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%; /* Ajustar el ancho de los operadores */
+}
+
+button {
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1),
+                inset 2px 2px 5px rgba(255, 255, 255, 0.5);
+}
+
+button:hover {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1),
+                inset 1px 1px 3px rgba(255, 255, 255, 0.5);
+}
+
+button:active {
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.2),
+                inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+#igual {
+    background: linear-gradient(145deg, #4CAF50, #3e8e41);
+    color: white;
+    grid-column: span 3; /* Hacer el botón de igual más ancho */
+    padding: 20px;
+}
+
+#igual:hover {
+    background: linear-gradient(145deg, #3e8e41, #4CAF50);
+}

@@ -1,22 +1,25 @@
 class Calculadora{
-    static Sumar = (a,b)=> a+b;
-    static Restar =(a,b) => a-b;
-    static Multiplicar = (a,b)=> a*b;
-    static Dividir = (a,b)=> a/b;
+    static Sumar = (a,b)=> parseFloat(a)+parseFloat(b);
+    static Restar =(a,b) => parseFloat(a)-parseFloat(b);
+    static Multiplicar = (a,b)=> parseFloat(a)*parseFloat(b);
+    static Dividir = (a,b)=> parseFloat(a)/parseFloat(b);
 }
 
 
 
 const pantalla = document.getElementById("pantalla");
 const igualBtn = document.getElementById("igual");
-let numeros=[], operadores=[];
+let numeros=[""], operadores=[];
 let cantNumeros=0, cantOperadores=0, iotal=0;
 
 
 
 function agregarNumero(idBoton) {
     pantalla.innerHTML+=idBoton;
-    numeros[cantNumeros]= numeros[cantNumeros]+""+idBoton;
+    if(numeros[cantNumeros]==undefined){
+        numeros.push("");
+    }
+    numeros[cantNumeros]= `${numeros[cantNumeros]}${idBoton}`;
     console.log(numeros);
 }
 
@@ -28,23 +31,25 @@ function agregarOperador(idOperador){
 }
 igualBtn.addEventListener('click', function(){
     total=numeros[0];
-    for(let i=1;i<cantOperadores;i++){
-        switch(operadores[i-1]){
+    for(let i=0;i<cantOperadores;i++){
+        console.log("jiji");
+        switch(operadores[i]){
             case '+':
-                total=Calculadora.Sumar(total,numeros[i]);
+                
+                total=Calculadora.Sumar(total,numeros[i+1]);
                 break;
             case '-':
-                total=Calculadora.Restar(total,numeros[i]);
+                total=Calculadora.Restar(total,numeros[i+1]);
                 break;
             case '/':
-                total=Calculadora.Dividir(total,numeros[i]);
+                total=Calculadora.Dividir(total,numeros[i+1]);
                 break;
             case '*':
-                total=Calculadora.Multiplicar(total,numeros[i]);
+                total=Calculadora.Multiplicar(total,numeros[i+1]);
                 break;
         }
     }
-    pantalla.innerHTML="= "+total;
+    pantalla.innerHTML+=" = "+total;
 });
 
 
