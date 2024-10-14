@@ -9,8 +9,8 @@ class Calculadora{
 
 const pantalla = document.getElementById("pantalla");
 const igualBtn = document.getElementById("igual");
-let numeros=[""], operadores=[];
-let cantNumeros=0, cantOperadores=0, iotal=0;
+let numeros=[""], operadores=[], subtotal=[], operadoresTerminos=[];
+let cantNumeros=0, cantOperadores=0, total=0, cantSubTotal=0;
 
 
 
@@ -30,25 +30,42 @@ function agregarOperador(idOperador){
     cantOperadores++;
 }
 igualBtn.addEventListener('click', function(){
-    total=numeros[0];
     for(let i=0;i<cantOperadores;i++){
-        console.log("jiji");
+        if(subtotal[cantSubTotal]==undefined){
+            subtotal.push(numeros[i]);
+        }
         switch(operadores[i]){
             case '+':
-                
-                total=Calculadora.Sumar(total,numeros[i+1]);
+                cantSubTotal++;
+                operadoresTerminos.push('+');
                 break;
             case '-':
-                total=Calculadora.Restar(total,numeros[i+1]);
+                operadoresTerminos.push('-');
+                cantSubTotal++;
                 break;
             case '/':
-                total=Calculadora.Dividir(total,numeros[i+1]);
+                subtotal[cantSubTotal]=Calculadora.Dividir(subtotal[cantSubTotal],numeros[i+1]);
                 break;
             case '*':
-                total=Calculadora.Multiplicar(total,numeros[i+1]);
+                subtotal[cantSubTotal]=Calculadora.Multiplicar(subtotal[cantSubTotal],numeros[i+1]);
                 break;
         }
     }
+    console.log(operadoresTerminos);
+    console.log(subtotal);
+    total=subtotal[0];
+    for(let i=0;i<operadoresTerminos.length;i++){
+        switch(operadoresTerminos[i]){
+            case '+':
+                total=Calculadora.Sumar(total,subtotal[i+1]);
+                break;
+            case '-':
+                total=Calculadora.Restar(total,subtotal[i+1]);
+                break;
+        }
+        console.log(total);
+    }
+
     pantalla.innerHTML+=" = "+total;
 });
 
